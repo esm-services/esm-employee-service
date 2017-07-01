@@ -26,14 +26,15 @@ public class EmployeeResource {
 	}
 
 	@PostMapping(value = "/employee")
-	public ResponseEntity<Long> newEmployee(@RequestBody EmployeeModel employeeModel) {
-		Long employeeID = employeeService.newEmployee(employeeModel);
-		return new ResponseEntity<>(employeeID, HttpStatus.CREATED);
+	public ResponseEntity<EmployeeModel> newEmployee(@RequestBody EmployeeModel employeeModel) {
+		EmployeeModel model = employeeService.newEmployee(employeeModel);
+		return new ResponseEntity<>(model, HttpStatus.CREATED);
 	}
 
 	@PostMapping(value = "/employees")
-	public void newEmployees(@RequestBody Employees employeesModel) {
+	public ResponseEntity<Void> newEmployees(@RequestBody Employees employeesModel) {
 		employeeService.newEmployees(employeesModel);
+		return ResponseEntity.accepted().build();
 	}
 
 	@PutMapping(value = "/employee")
@@ -43,8 +44,9 @@ public class EmployeeResource {
 	}
 
 	@PutMapping(value = "/employees")
-	public void updateEmployees(@RequestBody Employees employeesModel) {
+	public ResponseEntity<Void> updateEmployees(@RequestBody Employees employeesModel) {
 		employeeService.updateEmployees(employeesModel);
+		return ResponseEntity.accepted().build();
 	}
 
 	@GetMapping(value = "/employees")

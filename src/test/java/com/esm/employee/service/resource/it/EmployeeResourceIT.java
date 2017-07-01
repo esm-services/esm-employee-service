@@ -1,4 +1,4 @@
-package com.esm.employee.service.resource;
+package com.esm.employee.service.resource.it;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,9 +22,7 @@ import com.esm.employee.service.EmployeeServiceApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = EmployeeServiceApplication.class)
 @WebAppConfiguration
-public class EmployeeControllerTest {
-
-	private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
+public class EmployeeResourceIT {
 
 	private MockMvc mockMvc;
 
@@ -40,12 +39,12 @@ public class EmployeeControllerTest {
 		String employeeJson = "{\"employeeUID\":\"durgesh.rai\",\"firstName\":\"durgesh\",\"lastName\":\"rai\",\"dateOfBirth\":\"2017-06-27\",\"dateOfJoining\":\"2017-06-29\",\"dateOfLeaving\":\"2017-06-29\",\"designation\":\"engineer\"}";
 
 		this.mockMvc.perform(post("/employee")
-				.contentType(CONTENT_TYPE)
+				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.content(employeeJson))
 				.andExpect(status().isCreated());
 
 		this.mockMvc.perform(get("/employees"))
 				.andExpect(status().isOk())
-				.andExpect(content().contentType(CONTENT_TYPE));
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
 	}
 }

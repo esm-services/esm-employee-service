@@ -20,5 +20,17 @@ public class EmployeeModel {
 	private Date dateOfJoining;
 
 	private Date dateOfLeaving;
+	
+	public EmployeeModel(){}
 
+	public EmployeeModel(String employeeUID, String firstName, String lastName, Date dateOfBirth, Date dateOfJoining,
+			Date dateOfLeaving) {
+		super();
+		this.employeeUID = employeeUID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.dateOfJoining = dateOfJoining;
+		this.dateOfLeaving = dateOfLeaving;
+	}
 }

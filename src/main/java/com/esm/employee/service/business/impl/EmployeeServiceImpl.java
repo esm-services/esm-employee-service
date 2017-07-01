@@ -81,13 +81,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Long newEmployee(EmployeeModel employeeModel) {
+	public EmployeeModel newEmployee(EmployeeModel employeeModel) {
 		if (employeeRepository.findByEmployeeUID(employeeModel.getEmployeeUID()) != null) {
 			throw new UsernameAlreadyUsedException(employeeModel.getEmployeeUID());
 		}
 		Employee employee = DTOUtils.map(employeeModel, Employee.class);
 		employee = employeeRepository.save(employee);
-		return employee.getEmployeeId();
+		return DTOUtils.map(employee, EmployeeModel.class);
 	}
 
 	@Override

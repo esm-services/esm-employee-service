@@ -7,7 +7,7 @@ import com.esm.employee.service.utils.Employees;
 
 public interface EmployeeService {
 	
-	public Long newEmployee(EmployeeModel employeeModel);
+	public EmployeeModel newEmployee(EmployeeModel employeeModel);
 	
 	public Long updateEmployee(EmployeeModel employeeModel);
 

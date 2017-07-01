@@ -8,22 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "T_ESM_EMPLOYEE")
-@TableGenerator(name = "EMP_GEN", table = "EMP_ID_GEN")
+@SequenceGenerator(name="EMP_SEQ",sequenceName="EMP_SEQ", allocationSize=1) 
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "EMPLOYEE_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "EMP_GEN")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMP_SEQ")
 	private Long employeeId;
 
 	@Column(name = "EMPLOYEE_UID")
@@ -47,4 +49,34 @@ public class Employee implements Serializable {
 	@Column(name = "DESIGNATION")
 	private String designation;
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((employeeId == null) ? 0 : employeeId.hashCode());
+		result = prime * result + ((employeeUID == null) ? 0 : employeeUID.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (employeeId == null) {
+			if (other.employeeId != null)
+				return false;
+		} else if (!employeeId.equals(other.employeeId))
+			return false;
+		if (employeeUID == null) {
+			if (other.employeeUID != null)
+				return false;
+		} else if (!employeeUID.equals(other.employeeUID))
+			return false;
+		return true;
+	}
 }
