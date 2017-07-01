@@ -9,7 +9,7 @@ public interface EmployeeService {
 	
 	public Long newEmployee(EmployeeModel employeeModel);
 	
-	public Long updateEmployeeDetails(Long employeeId, EmployeeModel employeeModel);
+	public Long updateEmployee(EmployeeModel employeeModel);
 
 	public Employees findByLastName(String lastName);
 
@@ -24,4 +24,8 @@ public interface EmployeeService {
 	public Employees findAllEmployees();
 	
 	public Employees findByDesignation(String designation);
+	
+	public void newEmployees(Employees employees);
+	
+	public void updateEmployees(Employees employees);
 }

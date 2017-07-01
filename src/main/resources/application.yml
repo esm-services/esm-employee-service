@@ -1,5 +1,14 @@
 spring:
   application:
     name: esm-employee-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    
 server:
   port: 9999
+  
+logging:
+  level:
+    org.springframework.web: DEBUG
+    

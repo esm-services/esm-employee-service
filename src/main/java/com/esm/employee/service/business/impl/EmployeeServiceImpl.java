@@ -1,5 +1,6 @@
 package com.esm.employee.service.business.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -100,16 +101,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Long updateEmployeeDetails(Long employeeId, EmployeeModel employeeModel) {
-		log.debug("update employee by employeeId @" + employeeId);
-		Employee employee = employeeRepository.findOne(employeeId);
+	public Long updateEmployee(EmployeeModel employeeModel) {
+		String employeeUID = employeeModel.getEmployeeUID();
+		log.debug("update employee by employeeUID @" + employeeUID);
+		Employee employee = employeeRepository.findByEmployeeUID(employeeUID);
 		if (employee == null) {
-			throw new ResourceNotFoundException(employeeId);
+			throw new ResourceNotFoundException(employeeUID);
 		}
 		DTOUtils.mapTo(employeeModel, employee);
 		Employee updated = employeeRepository.save(employee);
 		if (log.isDebugEnabled()) {
-			log.debug("updated employee @" + updated);
+			log.debug("updated employee uith employeeID @" + updated.getEmployeeId());
 		}
 		return updated.getEmployeeId();
 	}
@@ -124,4 +126,48 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return new Employees(employeeModels);
 	}
 
+	@Override
+	public void newEmployees(Employees employees) {
+		List<String> rejectedData = new ArrayList<>();
+		List<EmployeeModel> accepteddata = new ArrayList<>();
+
+		for (EmployeeModel employee : employees.getData()) {
+			if (employeeRepository.findByEmployeeUID(employee.getEmployeeUID()) == null) {
+				accepteddata.add(employee);
+			} else {
+				rejectedData.add(employee.getEmployeeUID());
+			}
+		}
+
+		List<Employee> data = DTOUtils.mapList(accepteddata, Employee.class);
+		employeeRepository.save(data);
+
+		if (!rejectedData.isEmpty()) {
+			throw new UsernameAlreadyUsedException(rejectedData.toString());
+		}
+	}
+
+	@Override
+	public void updateEmployees(Employees employees) {
+		List<String> rejected = new ArrayList<>();
+		List<EmployeeModel> acceptedData = new ArrayList<>();
+		List<Employee> employeeData = new ArrayList<>();
+
+		for (EmployeeModel model : employees.getData()) {
+			Employee employee = employeeRepository.findByEmployeeUID(model.getEmployeeUID());
+			if (employee != null) {
+				employeeData.add(employee);
+				acceptedData.add(model);
+			} else {
+				rejected.add(model.getEmployeeUID());
+			}
+		}
+
+		DTOUtils.mapToList(acceptedData, employeeData);
+		employeeRepository.save(employeeData);
+
+		if (!rejected.isEmpty()) {
+			throw new ResourceNotFoundException(rejected.toString());
+		}
+	}
 }
