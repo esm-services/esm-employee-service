@@ -1,14 +1,27 @@
+server:
+  port: 9090
+  context-path: /services
+  
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8888/services/user
+  
 spring:
   application:
-    name: esm-employee-service
+    name: employee-service
   jpa:
     hibernate:
       ddl-auto: update
+  zipkin:
+    base-url: http://localhost:8080
+  sleuth:
+    sampler:
+      percentage: 1.0
     
-server:
-  port: 9999
-  
 logging:
   level:
     org.springframework.web: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+    org.springframework.security: DEBUG
     
