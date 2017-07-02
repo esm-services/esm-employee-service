@@ -87,8 +87,9 @@ public class EmployeeResourceTest {
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
 		MockHttpServletResponse response = result.getResponse();
+		System.out.println("response ::==> " + response.getStatus());
 
-		assertThat(HttpStatus.CREATED.value()).isEqualToIgnoringNullFields(response.getStatus());
+		assertThat(response.getStatus()).isEqualToIgnoringNullFields(HttpStatus.CREATED.value());
 
 	}
 
@@ -100,12 +101,11 @@ public class EmployeeResourceTest {
 		Mockito.when(mockEmployeeService.findByEmployeeUID(anyString())).thenReturn(employee);
 
 		mockMvc.perform(get("/employee").with(authentication(getOauthTestAuthentication()))
-						.sessionAttr("scopedTarget.oauth2ClientContext", getOauth2ClientContext())
-						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-				.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.sessionAttr("scopedTarget.oauth2ClientContext", getOauth2ClientContext())
+				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(content().string(employeeJson)).andExpect(jsonPath("$.username").value("bwatkins"))
 				.andExpect(jsonPath("$.token").value("my-fun-token"));
-		;
 	}
 
 	private Authentication getOauthTestAuthentication() {
