@@ -74,7 +74,7 @@ public class EmployeeResourceTest {
 
 		EmployeeModel employee = new EmployeeModel("durgesh.rai", "Durgesh", "RAI", new Date(), new Date(), new Date());
 
-		String employeeJson = "{\"employeeUID\":\"durgesh.rai\",\"firstName\":\"durgesh\",\"lastName\":\"rai\",\"dateOfBirth\":\"2017-06-27\",\"dateOfJoining\":\"2017-06-29\",\"dateOfLeaving\":\"2017-06-29\",\"designation\":\"engineer\"}";
+		String employeeJson = "{\"employeeUID\":\"durgesh.rai\",\"firstName\":\"Durgesh\",\"lastName\":\"Rai\",\"dateOfBirth\":\"2017-06-27\",\"dateOfJoining\":\"2017-06-29\",\"dateOfLeaving\":\"2017-06-29\",\"designation\":\"engineer\"}";
 
 		Mockito.when(mockEmployeeService.newEmployee(anyObject())).thenReturn(employee);
 

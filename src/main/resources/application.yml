@@ -15,6 +15,12 @@ security:
 spring:
   application:
     name: employee-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/EMPLOYEE_DB
+    username: rdurgesh
+    password: rdurgesh
+    driver-class-name: org.postgresql.Driver
+    
   jpa:
     hibernate:
       ddl-auto: validate
