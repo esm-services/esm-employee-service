@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -18,35 +17,34 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "T_ESM_EMPLOYEE")
-@SequenceGenerator(name="EMP_SEQ",sequenceName="EMP_SEQ", allocationSize=1) 
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "EMPLOYEE_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMP_SEQ")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "EMPLOYEE_ID", nullable = false, updatable = false)
 	private Long employeeId;
 
-	@Column(name = "EMPLOYEE_UID")
+	@Column(name = "EMPLOYEE_UID", nullable = false, updatable = false)
 	private String employeeUID;
 
-	@Column(name = "FIRST_NAME")
+	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 
-	@Column(name = "LAST_NAME")
+	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
-	@Column(name = "DATE_OF_BIRTH")
+	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	private Date dateOfBirth;
 
-	@Column(name = "DATE_OF_JOINING")
+	@Column(name = "DATE_OF_JOINING", nullable = false)
 	private Date dateOfJoining;
 
-	@Column(name = "DATE_OF_LEAVING")
+	@Column(name = "DATE_OF_LEAVING", nullable = true)
 	private Date dateOfLeaving;
 
-	@Column(name = "DESIGNATION")
+	@Column(name = "DESIGNATION", nullable = false)
 	private String designation;
 
 	@Override
