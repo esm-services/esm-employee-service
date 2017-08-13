@@ -17,9 +17,9 @@ spring:
     name: employee-service
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
   zipkin:
-    base-url: http://localhost:8080
+    base-url: http://localhost:7777
   sleuth:
     sampler:
       percentage: 1.0
