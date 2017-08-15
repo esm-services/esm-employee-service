@@ -77,8 +77,7 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 		Object principal = getPrincipal(map);
 		OAuth2Request request = getRequest(map);
 		List<GrantedAuthority> authorities = this.authoritiesExtractor.extractAuthorities(map);
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(principal, "N/A",
-				authorities);
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(principal, "N/A", authorities);
 		token.setDetails(map);
 		return new OAuth2Authentication(request, token);
 	}
