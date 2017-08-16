@@ -23,6 +23,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		resources.tokenServices(tokenServices);
+		resources.tokenServices(tokenServices).stateless(false);
 	}
 }

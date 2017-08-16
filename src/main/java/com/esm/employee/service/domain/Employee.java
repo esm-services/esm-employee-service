@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,13 +17,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "T_ESM_EMPLOYEE")
+@Table(name = "T_EMPLOYEE")
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "S_EMPLOYEE")
+	@SequenceGenerator(sequenceName = "S_EMPLOYEE", name = "S_EMPLOYEE")
 	@Column(name = "EMPLOYEE_ID", nullable = false, updatable = false)
 	private Long employeeId;
 
