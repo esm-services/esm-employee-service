@@ -18,6 +18,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/health").permitAll();
 		http.authorizeRequests().anyRequest().authenticated();
 	}
 

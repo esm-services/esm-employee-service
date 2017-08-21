@@ -1,16 +1,15 @@
 server:
   port: 7070
-  context-path: /services
   
 security:
   oauth2:
     client:
-      access-token-uri: http://localhost:9999/spring-security-oauth-server/oauth/token
-      user-authorization-uri: http://localhost:9999/spring-security-oauth-server/oauth/authorize
+      access-token-uri: http://localhost:9999/oauth/token
+      user-authorization-uri: http://localhost:9999/oauth/authorize
       client-id: commandlineinterface
       client-secret: commandlineinterface
     resource:
-      user-info-uri: http://localhost:9999/spring-security-oauth-server/user
+      user-info-uri: http://localhost:9999/user
   
 spring:
   application:
@@ -32,7 +31,7 @@ spring:
     
 logging:
   level:
-    org.springframework.web: DEBUG
-    org.springframework.cloud.sleuth: DEBUG
-    org.springframework.security: DEBUG
+    org.springframework.web: ERROR
+    org.springframework.cloud.sleuth: ERROR
+    org.springframework.security: ERROR
     

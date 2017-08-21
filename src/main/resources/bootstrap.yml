@@ -1,11 +1,13 @@
 spring:
   profiles:
     active:
-    - dev
+    - prod
   cloud:
     config:
+      enabled: true
       uri: http://localhost:8888
       username: config-server
       password: config-server
+    
 encrypt:
   key: ABCDEFGHIJKLMNOPQRSTUVWXYZ
