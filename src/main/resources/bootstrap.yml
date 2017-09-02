@@ -10,6 +10,7 @@ spring:
         enabled: true
       username: config-server
       password: config-server
+      fail-fast: true
 
 encrypt:
   key: ABCDEFGHIJKLMNOPQRSTUVWXYZ
