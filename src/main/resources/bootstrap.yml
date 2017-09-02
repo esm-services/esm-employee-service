@@ -1,13 +1,15 @@
 spring:
+  application:
+    name: employee-service
   profiles:
     active:
-    - prod
+    - dev
   cloud:
     config:
-      enabled: true
-      uri: http://localhost:8888
+      discovery:
+        enabled: true
       username: config-server
       password: config-server
-    
+
 encrypt:
   key: ABCDEFGHIJKLMNOPQRSTUVWXYZ

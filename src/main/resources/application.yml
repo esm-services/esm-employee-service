@@ -12,8 +12,6 @@ security:
       user-info-uri: http://localhost:9999/user
   
 spring:
-  application:
-    name: employee-service
   datasource:
     url: jdbc:postgresql://localhost:5432/EMPLOYEE_DB
     username: rdurgesh
