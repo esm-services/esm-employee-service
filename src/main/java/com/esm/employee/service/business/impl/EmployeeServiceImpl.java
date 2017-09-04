@@ -1,7 +1,7 @@
 package com.esm.employee.service.business.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employees findByDateOfBirth(Date dateOfBirth) {
+	public Employees findByDateOfBirth(LocalDate dateOfBirth) {
 		List<Employee> employees = employeeRepository.findByDateOfBirth(dateOfBirth);
 		if (employees == null || employees.isEmpty()) {
 			throw new ResourceNotFoundException(dateOfBirth);
@@ -61,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employees findByDateOfJoining(Date dateOfJoining) {
+	public Employees findByDateOfJoining(LocalDate dateOfJoining) {
 		List<Employee> employees = employeeRepository.findByDateOfJoining(dateOfJoining);
 		if (employees == null || employees.isEmpty()) {
 			throw new ResourceNotFoundException(dateOfJoining);

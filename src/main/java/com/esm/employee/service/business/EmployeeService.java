@@ -1,6 +1,6 @@
 package com.esm.employee.service.business;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.esm.employee.service.model.EmployeeModel;
 import com.esm.employee.service.utils.Employees;
@@ -15,9 +15,9 @@ public interface EmployeeService {
 
 	public Employees findByFirstName(String firstName);
 
-	public Employees findByDateOfBirth(Date dateOfBirth);
+	public Employees findByDateOfBirth(LocalDate dateOfBirth);
 
-	public Employees findByDateOfJoining(Date dateOfJoining);
+	public Employees findByDateOfJoining(LocalDate dateOfJoining);
 	
 	public EmployeeModel findByEmployeeUID(String employeeUID);
 	

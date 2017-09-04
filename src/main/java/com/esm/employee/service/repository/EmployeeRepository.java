@@ -3,7 +3,7 @@
  */
 package com.esm.employee.service.repository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,11 +22,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	public List<Employee> findByFirstName(String firstName);
 
-	public List<Employee> findByDateOfBirth(Date dateOfBirth);
+	public List<Employee> findByDateOfBirth(LocalDate dateOfBirth);
 
-	public List<Employee> findByDateOfJoining(Date dateOfJoining);
+	public List<Employee> findByDateOfJoining(LocalDate dateOfJoining);
 
 	public Employee findByEmployeeUID(String employeeUID);
-	
+
 	public List<Employee> findByDesignation(String designation);
 }

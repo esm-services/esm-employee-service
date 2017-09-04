@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Request;
 import org.springframework.security.test.context.support.WithSecurityContextFactory;
 
-public class WithMockCustomUserSecurityContextFactory implements WithSecurityContextFactory<WithMockCustomUser> {
+public class WithMockSecurityContextFactory implements WithSecurityContextFactory<WithMockCustomUser> {
 
 	@Override
 	public SecurityContext createSecurityContext(WithMockCustomUser withClient) {

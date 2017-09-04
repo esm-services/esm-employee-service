@@ -1,7 +1,7 @@
 package com.esm.employee.service.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,13 +38,13 @@ public class Employee implements Serializable {
 	private String lastName;
 
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 
 	@Column(name = "DATE_OF_JOINING", nullable = false)
-	private Date dateOfJoining;
+	private LocalDate dateOfJoining;
 
 	@Column(name = "DATE_OF_LEAVING", nullable = true)
-	private Date dateOfLeaving;
+	private LocalDate dateOfLeaving;
 
 	@Column(name = "DESIGNATION", nullable = false)
 	private String designation;
@@ -78,5 +78,12 @@ public class Employee implements Serializable {
 		} else if (!employeeUID.equals(other.employeeUID))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", employeeUID=" + employeeUID + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", dateOfJoining=" + dateOfJoining
+				+ ", dateOfLeaving=" + dateOfLeaving + ", designation=" + designation + "]";
 	}
 }

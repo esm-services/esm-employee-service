@@ -1,7 +1,6 @@
 package com.esm.employee.service.exception;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 public class ResourceNotFoundException extends RuntimeException {
 
@@ -9,7 +8,7 @@ public class ResourceNotFoundException extends RuntimeException {
 
 	private Long id;
 	
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 
 	public ResourceNotFoundException(Long id) {
 		super(String.format("resource %s was not found", id));
@@ -20,7 +19,7 @@ public class ResourceNotFoundException extends RuntimeException {
 		super(message);
 	}
 	
-	public ResourceNotFoundException(Date dateOfBirth) {
+	public ResourceNotFoundException(LocalDate dateOfBirth) {
 		super(String.format("resource %s was not found", dateOfBirth));
 		this.dateOfBirth = dateOfBirth;
 	}
@@ -29,7 +28,7 @@ public class ResourceNotFoundException extends RuntimeException {
 		return id;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 	

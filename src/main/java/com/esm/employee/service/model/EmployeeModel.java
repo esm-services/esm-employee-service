@@ -1,6 +1,6 @@
 package com.esm.employee.service.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,17 +15,17 @@ public class EmployeeModel {
 
 	private String lastName;
 
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 
-	private Date dateOfJoining;
+	private LocalDate dateOfJoining;
 
-	private Date dateOfLeaving;
-	
-	public EmployeeModel(){}
+	private LocalDate dateOfLeaving;
 
-	public EmployeeModel(String employeeUID, String firstName, String lastName, Date dateOfBirth, Date dateOfJoining,
-			Date dateOfLeaving) {
-		super();
+	public EmployeeModel() {
+	}
+
+	public EmployeeModel(String employeeUID, String firstName, String lastName, LocalDate dateOfBirth,
+			LocalDate dateOfJoining, LocalDate dateOfLeaving) {
 		this.employeeUID = employeeUID;
 		this.firstName = firstName;
 		this.lastName = lastName;

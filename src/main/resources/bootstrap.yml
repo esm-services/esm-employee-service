@@ -2,8 +2,7 @@ spring:
   application:
     name: employee-service
   profiles:
-    active:
-    - dev
+      active: dev
   cloud:
     config:
       discovery:
