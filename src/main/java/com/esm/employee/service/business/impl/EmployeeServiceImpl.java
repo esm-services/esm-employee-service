@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employees findByLastName(String lastName) {
 		List<Employee> employees = employeeRepository.findByLastName(lastName);
 		if (employees == null || employees.isEmpty()) {
-			throw new ResourceNotFoundException(lastName);
+			throw new ResourceNotFoundException("No record found with lastName "+lastName);
 		}
 		List<EmployeeModel> employeeModels = DTOUtils.mapList(employees, EmployeeModel.class);
 		return new Employees(employeeModels);
@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employees findByFirstName(String firstName) {
 		List<Employee> employees = employeeRepository.findByFirstName(firstName);
 		if (employees == null || employees.isEmpty()) {
-			throw new ResourceNotFoundException(firstName);
+			throw new ResourceNotFoundException("No record found with firstName "+firstName);
 		}
 		List<EmployeeModel> employeeModels = DTOUtils.mapList(employees, EmployeeModel.class);
 		return new Employees(employeeModels);
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employees findByDateOfBirth(LocalDate dateOfBirth) {
 		List<Employee> employees = employeeRepository.findByDateOfBirth(dateOfBirth);
 		if (employees == null || employees.isEmpty()) {
-			throw new ResourceNotFoundException(dateOfBirth);
+			throw new ResourceNotFoundException("No record found with Date Of Birth "+dateOfBirth);
 		}
 		List<EmployeeModel> employeeModels = DTOUtils.mapList(employees, EmployeeModel.class);
 		return new Employees(employeeModels);
@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employees findByDateOfJoining(LocalDate dateOfJoining) {
 		List<Employee> employees = employeeRepository.findByDateOfJoining(dateOfJoining);
 		if (employees == null || employees.isEmpty()) {
-			throw new ResourceNotFoundException(dateOfJoining);
+			throw new ResourceNotFoundException("No record found with Date of Joining "+dateOfJoining);
 		}
 		List<EmployeeModel> employeeModels = DTOUtils.mapList(employees, EmployeeModel.class);
 		return new Employees(employeeModels);
@@ -74,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeModel findByEmployeeUID(String employeeUID) {
 		Employee employee = employeeRepository.findByEmployeeUID(employeeUID);
 		if (employee == null) {
-			throw new ResourceNotFoundException(employeeUID);
+			throw new ResourceNotFoundException("No record found with uid "+employeeUID);
 		}
 		EmployeeModel employeeModel = DTOUtils.map(employee, EmployeeModel.class);
 		return employeeModel;
@@ -106,7 +106,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		log.debug("update employee by employeeUID @" + employeeUID);
 		Employee employee = employeeRepository.findByEmployeeUID(employeeUID);
 		if (employee == null) {
-			throw new ResourceNotFoundException(employeeUID);
+			throw new ResourceNotFoundException("No record found with uid "+employeeUID);
 		}
 		DTOUtils.mapTo(employeeModel, employee);
 		Employee updated = employeeRepository.save(employee);
@@ -120,7 +120,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employees findByDesignation(String designation) {
 		List<Employee> employees = employeeRepository.findByDesignation(designation);
 		if (employees == null || employees.isEmpty()) {
-			throw new ResourceNotFoundException(designation);
+			throw new ResourceNotFoundException("No record found with Designation "+designation);
 		}
 		List<EmployeeModel> employeeModels = DTOUtils.mapList(employees, EmployeeModel.class);
 		return new Employees(employeeModels);
