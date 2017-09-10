@@ -17,7 +17,7 @@ public @interface WithMockCustomUser {
 
 	String clientId() default "myclientwith";
 
-	String[] scope() default { "read" };
+	String[] scope() default { "read", "write" };
 
 	String[] roles() default { "USER", "ADMIN", "OPERATOR", "ACTUATOR" };
 }

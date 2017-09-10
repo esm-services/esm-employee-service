@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.esm.employee.service.business.EmployeeService;
 import com.esm.employee.service.domain.Employee;
 import com.esm.employee.service.exception.ResourceNotFoundException;
-import com.esm.employee.service.exception.UsernameAlreadyUsedException;
+import com.esm.employee.service.exception.UserNameAlreadyUsedException;
 import com.esm.employee.service.model.EmployeeModel;
 import com.esm.employee.service.repository.EmployeeRepository;
 import com.esm.employee.service.utils.DTOUtils;
@@ -83,7 +83,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeModel newEmployee(EmployeeModel employeeModel) {
 		if (employeeRepository.findByEmployeeUID(employeeModel.getEmployeeUID()) != null) {
-			throw new UsernameAlreadyUsedException(employeeModel.getEmployeeUID());
+			throw new UserNameAlreadyUsedException(employeeModel.getEmployeeUID());
 		}
 		Employee employee = DTOUtils.map(employeeModel, Employee.class);
 		employee = employeeRepository.save(employee);
@@ -143,7 +143,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeRepository.save(data);
 
 		if (!rejectedData.isEmpty()) {
-			throw new UsernameAlreadyUsedException(rejectedData.toString());
+			throw new UserNameAlreadyUsedException(rejectedData.toString());
 		}
 	}
 

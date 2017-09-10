@@ -1,5 +1,6 @@
 package com.esm.employee.service.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import lombok.Getter;
@@ -7,7 +8,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class EmployeeModel {
+public class EmployeeModel implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private String employeeUID;
 
@@ -32,5 +35,12 @@ public class EmployeeModel {
 		this.dateOfBirth = dateOfBirth;
 		this.dateOfJoining = dateOfJoining;
 		this.dateOfLeaving = dateOfLeaving;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeModel [employeeUID=" + employeeUID + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", dateOfBirth=" + dateOfBirth + ", dateOfJoining=" + dateOfJoining + ", dateOfLeaving="
+				+ dateOfLeaving + "]";
 	}
 }

@@ -1,12 +1,12 @@
 package com.esm.employee.service.exception;
 
-public class UsernameAlreadyUsedException extends RuntimeException {
+public class UserNameAlreadyUsedException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
 	private String username;
 
-	public UsernameAlreadyUsedException(String username) {
+	public UserNameAlreadyUsedException(String username) {
 		this.username = username;
 	}
 

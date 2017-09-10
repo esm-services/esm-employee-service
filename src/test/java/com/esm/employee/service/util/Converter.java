@@ -13,9 +13,7 @@ public class Converter {
 
 	// Convert object to JSON string and save into a file directly
 	public static void convertToJsonAndWriteToFile(Object obj) {
-
 		ObjectMapper mapper = new ObjectMapper();
-
 		try {
 			mapper.writeValue(new File("D:\\data.json"), obj);
 		} catch (JsonGenerationException e) {
@@ -29,9 +27,7 @@ public class Converter {
 
 	// Convert object to JSON string
 	public static String convertToJsonString(Object obj) {
-
 		ObjectMapper mapper = new ObjectMapper();
-
 		String jsonInString = null;
 		try {
 			jsonInString = mapper.writeValueAsString(obj);
@@ -52,12 +48,21 @@ public class Converter {
 		}
 		return jsonInString;
 	}
+	
+	public static byte[] convertToBytes(Object obj){
+		ObjectMapper mapper = new ObjectMapper();
+		byte[] bytes = null;
+		try {
+			bytes = mapper.writeValueAsBytes(obj);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return bytes;
+	}
 
 	// Convert JSON string from file to Object
 	public static <T> T convertJsonStrinFromFileToObject(Class<T> targetClass) {
-
 		ObjectMapper mapper = new ObjectMapper();
-
 		try {
 			return mapper.readValue(new File("D:\\data.json"), targetClass);
 		} catch (JsonParseException e) {
@@ -72,9 +77,7 @@ public class Converter {
 
 	// Convert JSON string to Object
 	public static <S, T> T convertJsonStringToObject(String jsonInString, Class<T> targetClass) {
-
 		ObjectMapper mapper = new ObjectMapper();
-
 		try {
 			return mapper.readValue(jsonInString, targetClass);
 		} catch (JsonParseException e) {
