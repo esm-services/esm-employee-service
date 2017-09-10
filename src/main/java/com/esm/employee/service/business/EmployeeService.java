@@ -3,7 +3,7 @@ package com.esm.employee.service.business;
 import java.time.LocalDate;
 
 import com.esm.employee.service.model.EmployeeModel;
-import com.esm.employee.service.utils.Employees;
+import com.esm.employee.service.model.Employees;
 
 public interface EmployeeService {
 	

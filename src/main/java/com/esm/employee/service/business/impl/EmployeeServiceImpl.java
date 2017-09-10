@@ -14,9 +14,9 @@ import com.esm.employee.service.domain.Employee;
 import com.esm.employee.service.exception.ResourceNotFoundException;
 import com.esm.employee.service.exception.UserNameAlreadyUsedException;
 import com.esm.employee.service.model.EmployeeModel;
+import com.esm.employee.service.model.Employees;
 import com.esm.employee.service.repository.EmployeeRepository;
 import com.esm.employee.service.utils.DTOUtils;
-import com.esm.employee.service.utils.Employees;
 
 @Service
 @Transactional

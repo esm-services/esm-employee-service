@@ -4,6 +4,9 @@ spring:
       discovery:
         enabled: false
       fail-fast: false
+    consul:
+      discovery:
+        enabled: false
   profiles:
     active: test
   jpa:
@@ -13,3 +16,4 @@ spring:
     username: sa
     password: sa
     driver-class-name: org.h2.Driver
+    

@@ -3,12 +3,21 @@ package com.esm.employee.service.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.esm.employee.service.utils.LocalDateTimeDeserializer;
+import com.esm.employee.service.utils.LocalDateTimeSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class EmployeeModel implements Serializable{
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmployeeModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,24 +27,17 @@ public class EmployeeModel implements Serializable{
 
 	private String lastName;
 
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDate dateOfBirth;
 
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDate dateOfJoining;
 
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDate dateOfLeaving;
-
-	public EmployeeModel() {
-	}
-
-	public EmployeeModel(String employeeUID, String firstName, String lastName, LocalDate dateOfBirth,
-			LocalDate dateOfJoining, LocalDate dateOfLeaving) {
-		this.employeeUID = employeeUID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.dateOfJoining = dateOfJoining;
-		this.dateOfLeaving = dateOfLeaving;
-	}
 
 	@Override
 	public String toString() {

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esm.employee.service.business.EmployeeService;
 import com.esm.employee.service.model.EmployeeModel;
-import com.esm.employee.service.utils.Employees;
+import com.esm.employee.service.model.Employees;
 
 import lombok.AllArgsConstructor;
 
@@ -30,7 +30,6 @@ public class EmployeeResource {
 	@PostMapping(value = "/employee", produces = APPLICATION_JSON_UTF8_VALUE)
 	@PreAuthorize("#oauth2.hasScope('read') and hasAuthority('ROLE_ACTUATOR')")
 	public ResponseEntity<EmployeeModel> newEmployee(@RequestBody EmployeeModel employeeModel) {
-		//EmployeeModel employeeModel = TestData.employee();
 		EmployeeModel model = employeeService.newEmployee(employeeModel);
 		return new ResponseEntity<>(model, HttpStatus.CREATED);
 	}
