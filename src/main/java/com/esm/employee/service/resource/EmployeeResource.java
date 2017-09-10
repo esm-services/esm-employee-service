@@ -28,7 +28,7 @@ public class EmployeeResource {
 	private final EmployeeService employeeService;
 
 	@PostMapping(value = "/employee", produces = APPLICATION_JSON_UTF8_VALUE)
-	@PreAuthorize("#oauth2.hasScope('read') and hasAuthority('ROLE_ACTUATOR')")
+	@PreAuthorize("#oauth2.hasScope('write') and hasAuthority('ROLE_ACTUATOR')")
 	public ResponseEntity<EmployeeModel> newEmployee(@RequestBody EmployeeModel employeeModel) {
 		EmployeeModel model = employeeService.newEmployee(employeeModel);
 		return new ResponseEntity<>(model, HttpStatus.CREATED);
@@ -56,7 +56,7 @@ public class EmployeeResource {
 	}
 
 	@GetMapping(value = "/employees", produces = APPLICATION_JSON_UTF8_VALUE)
-	@PreAuthorize("#oauth2.hasScope('read') and hasAuthority('ROLE_USER')")
+	@PreAuthorize("#oauth2.hasScope('read') and hasAuthority('ROLE_ACTUATOR')")
 	public ResponseEntity<Employees> allEmployees() {
 		Employees employees = employeeService.findAllEmployees();
 		return new ResponseEntity<>(employees, HttpStatus.OK);
