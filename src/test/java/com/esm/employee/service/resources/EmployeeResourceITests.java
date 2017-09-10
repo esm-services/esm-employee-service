@@ -47,7 +47,6 @@ public class EmployeeResourceITests extends EmployeeServiceIntegrationTestConfig
 
 	@Before
 	public void setup() {
-		employeeRepository.deleteAll();
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()).alwaysDo(print()).build();
 	}
 	
