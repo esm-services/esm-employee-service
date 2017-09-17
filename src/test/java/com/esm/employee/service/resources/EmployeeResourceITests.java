@@ -9,9 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +26,6 @@ import com.esm.employee.service.repository.EmployeeRepository;
 import com.esm.employee.service.security.WithMockCustomUser;
 import com.esm.employee.service.util.Converter;
 import com.esm.employee.service.util.TestData;
-import com.pszymczyk.consul.ConsulProcess;
-import com.pszymczyk.consul.ConsulStarterBuilder;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -39,8 +35,6 @@ public class EmployeeResourceITests extends EmployeeServiceIntegrationTestConfig
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
-	private static ConsulProcess consul;
 
 	@Autowired
 	private WebApplicationContext context;
@@ -55,23 +49,10 @@ public class EmployeeResourceITests extends EmployeeServiceIntegrationTestConfig
 		employeeRepository.deleteAll();
 	}
 
-	@BeforeClass
-	public static void setupBeforeClass() {
-		consul = ConsulStarterBuilder.consulStarter().build().start();
-		System.setProperty("spring.cloud.consul.enabled", "true");
-		System.setProperty("spring.cloud.consul.host", "localhost");
-		System.setProperty("spring.cloud.consul.port", String.valueOf(consul.getHttpPort()));
-	}
-
-	@AfterClass
-	public static void destroyAfterClass() {
-		consul.close();
-	}
-
 	@Test
 	@WithMockCustomUser(username = "user")
 	public void shouldBeCreatedNewUser() throws Exception {
-		String employeeString = Converter.convertToPrettyJsonString(TestData.employee());
+		String employeeString = Converter.convertToPrettyJsonString(TestData.employeeModel());
 		mockMvc.perform(post("/employee").content(employeeString).accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isCreated());
 		mockMvc.perform(get("/employees")).andExpect(status().isOk())

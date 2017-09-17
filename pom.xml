@@ -102,12 +102,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.pszymczyk.consul</groupId>
-			<artifactId>embedded-consul</artifactId>
-			<version>0.3.4</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

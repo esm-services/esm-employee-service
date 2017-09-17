@@ -2,7 +2,7 @@ package com.esm.employee.service.config;
 
 import org.springframework.test.context.TestPropertySource;
 
-@TestPropertySource(properties = { "label.info.message = Test message", "port: 4242" })
+@TestPropertySource(properties = { "spring.cloud.consul.config.enabled=false", "spring.zipkin.locator.discovery.enabled=false" })
 public class EmployeeServiceIntegrationTestConfig {
-	
+
 }

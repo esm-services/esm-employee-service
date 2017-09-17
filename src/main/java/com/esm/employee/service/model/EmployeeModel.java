@@ -39,10 +39,12 @@ public class EmployeeModel implements Serializable {
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDate dateOfLeaving;
 
+	private String designation;
+
 	@Override
 	public String toString() {
 		return "EmployeeModel [employeeUID=" + employeeUID + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", dateOfBirth=" + dateOfBirth + ", dateOfJoining=" + dateOfJoining + ", dateOfLeaving="
-				+ dateOfLeaving + "]";
+				+ dateOfLeaving + ", designation=" + designation + "]";
 	}
 }

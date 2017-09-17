@@ -48,6 +48,19 @@ public class Employee implements Serializable {
 
 	@Column(name = "DESIGNATION", nullable = false)
 	private String designation;
+	
+	public Employee(){}
+	
+	public Employee(String employeeUID, String firstName, String lastName, LocalDate dateOfBirth,
+			LocalDate dateOfJoining, LocalDate dateOfLeaving, String designation) {
+		this.employeeUID = employeeUID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.dateOfJoining = dateOfJoining;
+		this.dateOfLeaving = dateOfLeaving;
+		this.designation = designation;
+	}
 
 	@Override
 	public int hashCode() {
