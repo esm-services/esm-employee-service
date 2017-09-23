@@ -1,6 +1,3 @@
-server:
-  port: 7070
-  
 security:
   oauth2:
     client:
