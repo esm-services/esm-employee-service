@@ -1,19 +1,31 @@
 package com.esm.employee.service.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.web.client.RestTemplate;
 
-@Component
-@ConfigurationProperties(prefix = "label")
+import com.esm.employee.service.security.CustomUserInfoTokenServices;
+
+@Configuration
 public class EmployeeServiceConfiguration {
 
-	private String property;
+	@Autowired
+	private ResourceServerProperties sso;
 
-	public String getProperty() {
-		return property;
+	@Bean
+	@Primary
+	public ResourceServerTokenServices tokenServices() {
+		return new CustomUserInfoTokenServices(sso.getUserInfoUri(), sso.getClientId());
 	}
 
-	public void setProperty(String property) {
-		this.property = property;
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 }
