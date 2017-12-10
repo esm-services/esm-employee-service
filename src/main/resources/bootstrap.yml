@@ -2,7 +2,8 @@ spring:
   application:
     name: employee-service
   profiles:
-      active: dev
+    active:
+    - prod
   cloud:
     config:
       discovery:
@@ -10,6 +11,5 @@ spring:
       username: config-server
       password: config-server
       fail-fast: true
-
 encrypt:
   key: ABCDEFGHIJKLMNOPQRSTUVWXYZ
